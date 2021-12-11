@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+    android:label="h"
     app:startDestination="@+id/nav_home">
 
     <fragment
@@ -12,14 +13,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="de.hka.charitable.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_profil"
+        android:name="de.hka.charitable.ui.profil.ProfilFragment"
+        android:label="@string/menu_profil"
+        tools:layout="@layout/fragment_profil" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="de.hka.charitable.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_meine_angebote"
+        android:name="de.hka.charitable.ui.meine_angebote.MeineAngeboteFragment"
+        android:label="@string/menu_meine_angebote"
+        tools:layout="@layout/fragment_meine_angebote" />
 </navigation>

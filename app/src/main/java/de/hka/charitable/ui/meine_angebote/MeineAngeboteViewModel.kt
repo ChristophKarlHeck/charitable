@@ -1,13 +1,13 @@
-package de.hka.charitable.ui.slideshow
+package de.hka.charitable.ui.meine_angebote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class MeineAngeboteViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is slideshow Fragment"
+        value = "This is meineAngebote Fragment"
     }
     val text: LiveData<String> = _text
 }
