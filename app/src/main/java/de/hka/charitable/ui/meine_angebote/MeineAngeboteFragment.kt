@@ -1,15 +1,19 @@
 package de.hka.charitable.ui.meine_angebote
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import de.hka.charitable.CreateMealActivity
 import de.hka.charitable.R
 import de.hka.charitable.databinding.FragmentMeineAngeboteBinding
 
@@ -17,6 +21,7 @@ class MeineAngeboteFragment : Fragment() {
 
         private lateinit var meineAngeboteViewModel: MeineAngeboteViewModel
         private var _binding: FragmentMeineAngeboteBinding? = null
+
 
         // This property is only valid between onCreateView and
         // onDestroyView.
@@ -40,8 +45,14 @@ class MeineAngeboteFragment : Fragment() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
                 super.onViewCreated(view, savedInstanceState)
                 val listOwnMeals = view.findViewById<ListView>(R.id.listMyMeals)
+                val openCreateMealActivityButton = view.findViewById<FloatingActionButton>(R.id.addNewMealButton)
                 val adapter = ArrayAdapter<String>(view.context, android.R.layout.simple_list_item_1, this.getFoodListItems())
                 listOwnMeals.adapter = adapter
+
+                openCreateMealActivityButton.setOnClickListener{
+                        val intent = Intent(view.context, CreateMealActivity::class.java)
+                        startActivity(intent)
+                }
 
         }
 
