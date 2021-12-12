@@ -1,14 +1,12 @@
 package de.hka.charitable
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
-import org.w3c.dom.Text
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
-import java.time.Month
-import java.time.MonthDay
-import java.time.Year
 import java.util.*
 
 class CreateMealActivity : AppCompatActivity() {
@@ -33,7 +31,7 @@ class CreateMealActivity : AppCompatActivity() {
 
         changeDateButton.setOnClickListener{
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{
-                    view, mYear, mMonth, mDay -> showDate.text=("$mDay.$mMonth.$mYear")},year, month, day)
+                    view, mYear, mMonth , mDay -> showDate.text=mDay.toString()+"."+(mMonth+1)+"."+mYear},year, month, day)
             dpd.show()
         }
     }
