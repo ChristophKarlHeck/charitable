@@ -18,6 +18,7 @@ class CreateMealActivity : AppCompatActivity() {
         val imageView = findViewById<ImageView>(R.id.imageView2)
         imageView.setImageResource(R.drawable.ic_create_meal_spaghetti)
 
+        // View Date and Change Date Button
         val changeDateButton = findViewById<Button>(R.id.button)
         val showDate = findViewById<TextView>(R.id.textView2)
 

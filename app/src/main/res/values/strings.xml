@@ -13,5 +13,12 @@
     <string name="menu_historie">Historie</string>
     <string name="gericht">Gericht</string>
     <string name="todo">TODO</string>
-    <string name="textview">Datum ändern</string>
+    <string name="change_date">Datum ändern</string>
+    <string name="name_of_meal">Name des Gerichtes</string>
+    <string name="price">Preis in Euro</string>
+    <string name="number_of_seats">Anzahl Plätze</string>
+    <string name="ingredients">Zutaten</string>
+    <string name="description">Beschreibung</string>
+    <string name="charitable_organization">Spendenorganisation</string>
+    <string name="create">Anlegen</string>
 </resources>
