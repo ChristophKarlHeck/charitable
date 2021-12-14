@@ -15,10 +15,10 @@
     <string name="todo">TODO</string>
     <string name="change_date">Datum ändern</string>
     <string name="name_of_meal">Name des Gerichtes</string>
-    <string name="price">Preis in Euro</string>
-    <string name="number_of_seats">Anzahl Plätze</string>
-    <string name="ingredients">Zutaten</string>
-    <string name="description">Beschreibung</string>
-    <string name="charitable_organization">Spendenorganisation</string>
-    <string name="create">Anlegen</string>
+    <string name="price"><font size="10">Preis in Euro</font></string>
+    <string name="number_of_seats"><font size="10">Anzahl Plätze</font></string>
+    <string name="ingredients"><font size="10">Zutaten</font></string>
+    <string name="description"><font size="10">Beschreibung</font></string>
+    <string name="charitable_organization"><font size="10">Spendenorganisation</font></string>
+    <string name="create"><font size="14">Anlegen</font></string>
 </resources>
