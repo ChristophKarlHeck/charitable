@@ -4,9 +4,9 @@
 
     <solid android:color="@color/charitable_light_blue" />
     <corners
-        android:bottomRightRadius="10pt"
-        android:bottomLeftRadius="10pt"
-        android:topLeftRadius="10pt"
-        android:topRightRadius="10pt" />
+        android:bottomRightRadius="8pt"
+        android:bottomLeftRadius="8pt"
+        android:topLeftRadius="8pt"
+        android:topRightRadius="8pt" />
 
 </shape>
