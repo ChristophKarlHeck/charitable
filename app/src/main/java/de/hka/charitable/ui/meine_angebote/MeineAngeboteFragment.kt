@@ -15,65 +15,73 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.hka.charitable.CreateMealActivity
 import de.hka.charitable.R
+import de.hka.charitable.database.DatabaseBuilder
+import de.hka.charitable.database.DatabaseHelperImpl
+import de.hka.charitable.database.Meal
 import de.hka.charitable.databinding.FragmentMeineAngeboteBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.*
 
 class MeineAngeboteFragment : Fragment() {
 
-        private lateinit var meineAngeboteViewModel: MeineAngeboteViewModel
-        private var _binding: FragmentMeineAngeboteBinding? = null
+    private lateinit var meineAngeboteViewModel: MeineAngeboteViewModel
+    private var _binding: FragmentMeineAngeboteBinding? = null
 
 
-        // This property is only valid between onCreateView and
-        // onDestroyView.
-        private val binding get() = _binding!!
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
-        override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-        ): View? {
-                meineAngeboteViewModel =
-                ViewModelProvider(this).get(MeineAngeboteViewModel::class.java)
+    ): View? {
+        meineAngeboteViewModel =
+            ViewModelProvider(this).get(MeineAngeboteViewModel::class.java)
+        _binding = FragmentMeineAngeboteBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
+    }
 
-                _binding = FragmentMeineAngeboteBinding.inflate(inflater, container, false)
-                val root: View = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val list = this.getFoodListItems();
+        val listOwnMeals = view.findViewById<ListView>(R.id.listMyMeals)
+        val openCreateMealActivityButton =
+            view.findViewById<FloatingActionButton>(R.id.addNewMealButton)
+        // wait for the Database Request
+        Thread.sleep(100);
+        val adapter = ArrayAdapter<Meal>(
+            view.context,
+            android.R.layout.simple_list_item_1,
+            list
+        )
+        listOwnMeals.adapter = adapter
 
-
-                return root
+        openCreateMealActivityButton.setOnClickListener {
+            val intent = Intent(view.context, CreateMealActivity::class.java)
+            startActivity(intent)
         }
 
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-                super.onViewCreated(view, savedInstanceState)
-                val listOwnMeals = view.findViewById<ListView>(R.id.listMyMeals)
-                val openCreateMealActivityButton = view.findViewById<FloatingActionButton>(R.id.addNewMealButton)
-                val adapter = ArrayAdapter<String>(view.context, android.R.layout.simple_list_item_1, this.getFoodListItems())
-                listOwnMeals.adapter = adapter
+    }
 
-                openCreateMealActivityButton.setOnClickListener{
-                        val intent = Intent(view.context, CreateMealActivity::class.java)
-                        startActivity(intent)
-                }
-
+    private fun getFoodListItems(): List<Meal> {
+        var list = mutableListOf<Meal>();
+        GlobalScope.launch {
+            val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
+            dbHelper.getMeals().forEach {
+                list.add(it);
+            };
         }
+        return list;
+    }
 
-        private fun getFoodListItems(): Array<String> {
-                val list = arrayOf(
-                        "Cristiano Ronaldo",
-                        "Messi",
-                        "Neymar",
-                        "Isco",
-                        "Hazard",
-                        "Mbappe",
-                        "Hazard",
-                        "Ziyech",
-                        "Suarez"
-                )
-                return list;
-        }
-
-
-        override fun onDestroyView() {
-                super.onDestroyView()
-                _binding = null
-                }
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
