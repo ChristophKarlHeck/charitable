@@ -2,20 +2,16 @@ package de.hka.charitable
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.text.Editable
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import de.hka.charitable.database.AppDatabase
 import de.hka.charitable.database.DatabaseBuilder
 import de.hka.charitable.database.DatabaseHelperImpl
 import de.hka.charitable.database.Meal
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,8 +21,8 @@ class CreateMealActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_meal)
 
-        val imageView = findViewById<ImageView>(R.id.imageView2)
-        imageView.setImageResource(R.drawable.ic_create_meal_spaghetti)
+        /*val imageView = findViewById<ImageView>(R.id.imageView2)
+        imageView.setImageResource(R.drawable.ic_create_meal_spaghetti)*/
 
         // View Date and Change Date Button
         val changeDateButton = findViewById<Button>(R.id.button)
