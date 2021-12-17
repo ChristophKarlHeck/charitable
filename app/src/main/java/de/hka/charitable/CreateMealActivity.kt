@@ -63,7 +63,7 @@ class CreateMealActivity : AppCompatActivity() {
                 GlobalScope.launch{
                     val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(applicationContext))
                     dbHelper.insertMeal(
-                        Meal(4,
+                        Meal(5,
                             editTextMeal.text.toString(),
                             editTextPrice.text.toString(),
                             editTextSeats.text.toString(),
