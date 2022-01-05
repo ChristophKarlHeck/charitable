@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/Charitable/app/src/main/res/layout/content_main.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Robin/StudioProjects/charitable/app/src/main/res/drawable/ic_create_meal_spaghetti.xml" value="0.36574074074074076" />
+        <entry key="..\:/Users/Robin/StudioProjects/charitable/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Robin/StudioProjects/charitable/app/src/main/res/layout/activity_show_meal.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Robin/StudioProjects/charitable/app/src/main/res/layout/fragment_meine_angebote.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Robin/StudioProjects/charitable/app/src/main/res/layout/list_item.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

@@ -2,6 +2,7 @@ package de.hka.charitable.ui.meine_angebote
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.hka.charitable.CreateMealActivity
 import de.hka.charitable.R
+import de.hka.charitable.ShowMealActivity
 import de.hka.charitable.database.DatabaseBuilder
 import de.hka.charitable.database.DatabaseHelperImpl
 import de.hka.charitable.database.Meal
@@ -61,7 +63,17 @@ class MeineAngeboteFragment : Fragment() {
         listOwnMeals.adapter = adapter
         listOwnMeals.isClickable = true;
         listOwnMeals.setOnItemClickListener { parent, view, position, id ->
-         //TODO Load View of Item on click
+            run {
+                var meal = (listOwnMeals.getItemAtPosition(position) as Meal)
+                val intent = Intent(view.context, ShowMealActivity::class.java)
+                intent.putExtra("name",meal.name)
+                intent.putExtra("price",meal.price)
+                intent.putExtra("seats",meal.seats)
+                intent.putExtra("ingredients",meal.ingredients)
+                intent.putExtra("description",meal.description)
+                intent.putExtra("charitable_organization",meal.charitableOrganization)
+                startActivity(intent)
+            }
         }
         openCreateMealActivityButton.setOnClickListener {
             val intent = Intent(view.context, CreateMealActivity::class.java)
