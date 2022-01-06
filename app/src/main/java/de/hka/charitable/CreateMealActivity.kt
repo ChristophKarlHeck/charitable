@@ -1,5 +1,6 @@
 package de.hka.charitable
 
+import android.app.ActivityManager
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import de.hka.charitable.database.DatabaseBuilder
 import de.hka.charitable.database.DatabaseHelperImpl
 import de.hka.charitable.database.Meal
+import de.hka.charitable.ui.meine_angebote.MeineAngeboteFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -60,7 +62,6 @@ class CreateMealActivity : AppCompatActivity() {
             findViewById<EditText>(R.id.editTextSpendenorganisation)
         val buttonCreateMeal = findViewById<Button>(R.id.buttonAnlegen)
 
-
         // Add Meal to Database
         buttonCreateMeal.setOnClickListener {
             GlobalScope.launch {
@@ -75,9 +76,11 @@ class CreateMealActivity : AppCompatActivity() {
                         editTextCharitableOrganization.text.toString(),
                     )
                 )
-                finish();
             }
+            MeineAngeboteFragment.refreshFunction.invoke();
+            finish();
         }
+
     }
 }
 

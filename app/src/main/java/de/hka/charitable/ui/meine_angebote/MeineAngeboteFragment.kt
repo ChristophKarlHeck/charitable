@@ -30,6 +30,8 @@ class MeineAngeboteFragment : Fragment() {
 
     private lateinit var meineAngeboteViewModel: MeineAngeboteViewModel
     private var _binding: FragmentMeineAngeboteBinding? = null
+    var adapter: ListAdapter? = null
+    var currentView: View? = null
 
 
     // This property is only valid between onCreateView and
@@ -50,13 +52,15 @@ class MeineAngeboteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        MeineAngeboteFragment.refreshFunction = { this.refresh() };
+        currentView = view;
         val list = this.getFoodListItems();
         val listOwnMeals = view.findViewById<ListView>(R.id.listMyMeals)
         val openCreateMealActivityButton =
             view.findViewById<FloatingActionButton>(R.id.addNewMealButton)
         // wait for the Database Request
         Thread.sleep(100);
-        val adapter = ListAdapter(
+        adapter = ListAdapter(
             view.context,
             list
         )
@@ -82,6 +86,19 @@ class MeineAngeboteFragment : Fragment() {
 
     }
 
+    public fun refresh()
+    {
+        val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
+        Thread.sleep(100);
+        adapter = currentView?.context?.let {
+            ListAdapter(
+                it,
+                getFoodListItems()
+            )
+        }
+        listOwnMeals?.adapter = adapter
+    }
+
     private fun getFoodListItems(): ArrayList<Meal> {
         var list = ArrayList<Meal>();
         GlobalScope.launch {
@@ -96,5 +113,9 @@ class MeineAngeboteFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        var refreshFunction = {};
     }
 }
