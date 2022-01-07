@@ -76,6 +76,7 @@ class MeineAngeboteFragment : Fragment() {
                 intent.putExtra("ingredients",meal.ingredients)
                 intent.putExtra("description",meal.description)
                 intent.putExtra("charitable_organization",meal.charitableOrganization)
+                intent.putExtra("imagePath",meal.imagePath)
                 startActivity(intent)
             }
         }

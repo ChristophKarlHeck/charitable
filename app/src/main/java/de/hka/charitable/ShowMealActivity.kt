@@ -1,10 +1,13 @@
 package de.hka.charitable
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
 
 class ShowMealActivity : AppCompatActivity() {
 
@@ -19,6 +22,10 @@ class ShowMealActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.ingredients).text = intent.getStringExtra("ingredients")
             findViewById<TextView>(R.id.description).text = intent.getStringExtra("description")
             findViewById<TextView>(R.id.charitableOrganization).text = intent.getStringExtra("charitable_organization")
+            intent.getStringExtra("imagePath")?.let {
+                findViewById<ImageView>(R.id.previewImage).setImageResource(
+                    it.toInt())
+            };
 
         }
 

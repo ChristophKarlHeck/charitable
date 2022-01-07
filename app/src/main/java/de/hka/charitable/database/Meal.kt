@@ -13,6 +13,7 @@ data class Meal(
     @ColumnInfo(name = "ingredients") val ingredients: String?,
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "charitable_organization") val charitableOrganization: String?,
+    @ColumnInfo(name= "image_path") val imagePath: String?,
 ){
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0

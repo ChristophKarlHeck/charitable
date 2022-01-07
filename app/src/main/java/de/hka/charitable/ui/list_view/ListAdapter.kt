@@ -18,13 +18,14 @@ class ListAdapter(context: Context, mealArrayList: ArrayList<Meal>) :
         var view = convertView;
         if (convertView == null)
             view = from(context).inflate(R.layout.list_item, parent, false);
-        var previewImage = view?.findViewById<ImageView>(R.id.previewImage);
+        val previewImage = view?.findViewById<ImageView>(R.id.previewImage);
         val foodName = view?.findViewById<TextView>(R.id.foodName);
         val description = view?.findViewById<TextView>(R.id.description);
         val price = view?.findViewById<TextView>(R.id.price);
         foodName?.text = meal?.name;
         description?.text = meal?.description;
         price?.text = meal?.price;
+        meal?.imagePath?.let { previewImage?.setImageResource(it.toInt()) }
         return super.getView(position, view, parent);
     }
 

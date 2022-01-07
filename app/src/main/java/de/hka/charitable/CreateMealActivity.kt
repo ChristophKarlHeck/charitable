@@ -63,6 +63,15 @@ class CreateMealActivity : AppCompatActivity() {
         val buttonCreateMeal = findViewById<Button>(R.id.buttonAnlegen)
 
         // Add Meal to Database
+        var random = "" ;
+        if(((0..10).random())<6)
+        {
+            random = R.drawable.test2.toString();
+        }
+        else{
+
+            random = R.drawable.test.toString();
+        }
         buttonCreateMeal.setOnClickListener {
             GlobalScope.launch {
                 val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(applicationContext))
@@ -74,6 +83,7 @@ class CreateMealActivity : AppCompatActivity() {
                         editTextIngredients.text.toString(),
                         editTextDescription.text.toString(),
                         editTextCharitableOrganization.text.toString(),
+                        random
                     )
                 )
             }
