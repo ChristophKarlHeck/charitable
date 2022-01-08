@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -23,54 +24,72 @@
         android:text=""
         android:textColor="@color/black" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutInformation"
+
+    <TextView
+        android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/foodName"
-        android:clickable="true"
-        android:focusable="true">
+        android:layout_below="@id/foodName"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <EditText
+        android:id="@+id/bewertung"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/foodName"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/bewertung"
+        android:inputType="number"
+        android:lines="5"
+        android:maxLines="5"
+        android:paddingLeft="16dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/hint_color"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/description" />
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bewertung"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp" />
 
-        <TextView
-            android:id="@+id/seats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/price"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text=""
-            android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/seats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/ingredients"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/seats"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text=""
-            android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seats"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/charitableOrganization"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ingredients"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text=""
-            android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/charitableOrganization"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ingredients"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black" />
 
-    </RelativeLayout>
 </RelativeLayout>

@@ -14,6 +14,7 @@ data class Meal(
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "charitable_organization") val charitableOrganization: String?,
     @ColumnInfo(name= "image_path") val imagePath: String?,
+    @ColumnInfo(name= "rating") var rating: String?,
 ){
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0

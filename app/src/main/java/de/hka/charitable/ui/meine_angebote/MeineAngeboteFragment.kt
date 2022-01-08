@@ -53,14 +53,14 @@ class MeineAngeboteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        MeineAngeboteFragment.refreshFunction = { this.refresh() };
+        refreshFunction = { this.refresh() };
         currentView = view;
         val list = this.getFoodListItems();
         val listOwnMeals = view.findViewById<ListView>(R.id.listMyMeals)
         val openCreateMealActivityButton =
             view.findViewById<FloatingActionButton>(R.id.addNewMealButton)
         // wait for the Database Request
-        Thread.sleep(200);
+        Thread.sleep(100);
         adapter = ListAdapter(
             view.context,
             list
@@ -71,6 +71,7 @@ class MeineAngeboteFragment : Fragment() {
             run {
                 var meal = (listOwnMeals.getItemAtPosition(position) as Meal)
                 val intent = Intent(view.context, ShowMealActivity::class.java)
+                val id = meal.uid;
                 intent.putExtra("name",meal.name)
                 intent.putExtra("price",meal.price)
                 intent.putExtra("seats",meal.seats)
@@ -78,6 +79,8 @@ class MeineAngeboteFragment : Fragment() {
                 intent.putExtra("description",meal.description)
                 intent.putExtra("charitable_organization",meal.charitableOrganization)
                 intent.putExtra("imagePath",meal.imagePath)
+                intent.putExtra("rating",meal.rating)
+                intent.putExtra("id", id)
                 startActivity(intent)
             }
         }
@@ -90,9 +93,10 @@ class MeineAngeboteFragment : Fragment() {
 
     public fun refresh()
     {
+        Thread.sleep(50)
         var list = getFoodListItems();
         val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
-        Thread.sleep(200);
+        Thread.sleep(100);
         adapter = currentView?.context?.let {
             ListAdapter(
                 it,

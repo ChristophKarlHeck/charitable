@@ -83,7 +83,8 @@ class CreateMealActivity : AppCompatActivity() {
                         editTextIngredients.text.toString(),
                         editTextDescription.text.toString(),
                         editTextCharitableOrganization.text.toString(),
-                        random
+                        random,
+                        ""
                     )
                 )
             }
