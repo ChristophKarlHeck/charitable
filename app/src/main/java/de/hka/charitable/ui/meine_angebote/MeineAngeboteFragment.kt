@@ -25,6 +25,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MeineAngeboteFragment : Fragment() {
 
@@ -59,7 +60,7 @@ class MeineAngeboteFragment : Fragment() {
         val openCreateMealActivityButton =
             view.findViewById<FloatingActionButton>(R.id.addNewMealButton)
         // wait for the Database Request
-        Thread.sleep(100);
+        Thread.sleep(200);
         adapter = ListAdapter(
             view.context,
             list
@@ -89,12 +90,13 @@ class MeineAngeboteFragment : Fragment() {
 
     public fun refresh()
     {
+        var list = getFoodListItems();
         val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
-        Thread.sleep(100);
+        Thread.sleep(200);
         adapter = currentView?.context?.let {
             ListAdapter(
                 it,
-                getFoodListItems()
+                list
             )
         }
         listOwnMeals?.adapter = adapter
@@ -107,7 +109,9 @@ class MeineAngeboteFragment : Fragment() {
             dbHelper.getMeals().forEach {
                 list.add(it);
             };
+            list = ArrayList<Meal>(list.sortedWith(compareBy { it.name }));
         }
+        Thread.sleep(100)
         return list;
     }
 
