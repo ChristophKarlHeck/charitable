@@ -23,4 +23,6 @@
     <string name="create">Anlegen</string>
     <string name="previewimage">previewImage</string>
     <string name="bewertung">bewertung</string>
+    <string name="name">name</string>
+    <string name="sortByPrice">Preis</string>
 </resources>

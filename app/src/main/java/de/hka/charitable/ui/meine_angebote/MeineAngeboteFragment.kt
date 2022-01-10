@@ -72,14 +72,14 @@ class MeineAngeboteFragment : Fragment() {
                 var meal = (listOwnMeals.getItemAtPosition(position) as Meal)
                 val intent = Intent(view.context, ShowMealActivity::class.java)
                 val id = meal.uid;
-                intent.putExtra("name",meal.name)
-                intent.putExtra("price",meal.price)
-                intent.putExtra("seats",meal.seats)
-                intent.putExtra("ingredients",meal.ingredients)
-                intent.putExtra("description",meal.description)
-                intent.putExtra("charitable_organization",meal.charitableOrganization)
-                intent.putExtra("imagePath",meal.imagePath)
-                intent.putExtra("rating",meal.rating)
+                intent.putExtra("name", meal.name)
+                intent.putExtra("price", meal.price)
+                intent.putExtra("seats", meal.seats)
+                intent.putExtra("ingredients", meal.ingredients)
+                intent.putExtra("description", meal.description)
+                intent.putExtra("charitable_organization", meal.charitableOrganization)
+                intent.putExtra("imagePath", meal.imagePath)
+                intent.putExtra("rating", meal.rating)
                 intent.putExtra("id", id)
                 startActivity(intent)
             }
@@ -88,15 +88,24 @@ class MeineAngeboteFragment : Fragment() {
             val intent = Intent(view.context, CreateMealActivity::class.java)
             startActivity(intent)
         }
+        val sortByNameButton =
+            view.findViewById<Button>(R.id.sortByName)
+        val sortByPriceButton =
+            view.findViewById<Button>(R.id.sortByPrice)
+        sortByNameButton.setOnClickListener {
+            this.refreshAndSortByName()
+        }
+        sortByPriceButton.setOnClickListener {
+            this.refreshAndSortByPrice()
+        }
+
 
     }
 
-    public fun refresh()
-    {
+    public fun refresh() {
         Thread.sleep(50)
         var list = getFoodListItems();
         val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
-        Thread.sleep(100);
         adapter = currentView?.context?.let {
             ListAdapter(
                 it,
@@ -113,7 +122,60 @@ class MeineAngeboteFragment : Fragment() {
             dbHelper.getMeals().forEach {
                 list.add(it);
             };
+        }
+        Thread.sleep(100)
+        return list;
+    }
+
+    public fun refreshAndSortByName() {
+        Thread.sleep(50)
+        var list = getFoodListItemsAndSortByName();
+        val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
+        Thread.sleep(100);
+        adapter = currentView?.context?.let {
+            ListAdapter(
+                it,
+                list
+            )
+        }
+        listOwnMeals?.adapter = adapter
+    }
+
+    private fun getFoodListItemsAndSortByName(): ArrayList<Meal> {
+        var list = ArrayList<Meal>();
+        GlobalScope.launch {
+            val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
+            dbHelper.getMeals().forEach {
+                list.add(it);
+            };
             list = ArrayList<Meal>(list.sortedWith(compareBy { it.name }));
+        }
+        Thread.sleep(100)
+        return list;
+    }
+
+    public fun refreshAndSortByPrice() {
+        Thread.sleep(50)
+        var list = getFoodListItemsAndSortByPrice();
+        val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
+        Thread.sleep(100);
+        adapter = currentView?.context?.let {
+            ListAdapter(
+                it,
+                list
+            )
+        }
+        listOwnMeals?.adapter = adapter
+    }
+
+    private fun getFoodListItemsAndSortByPrice(): ArrayList<Meal> {
+        var list = ArrayList<Meal>();
+        GlobalScope.launch {
+            val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
+            dbHelper.getMeals().forEach {
+                list.add(it);
+            };
+            list = ArrayList<Meal>(list.sortedWith(compareBy { it.price }));
         }
         Thread.sleep(100)
         return list;
@@ -124,7 +186,7 @@ class MeineAngeboteFragment : Fragment() {
         _binding = null
     }
 
-    companion object{
+    companion object {
         var refreshFunction = {};
     }
 }
