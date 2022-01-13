@@ -22,7 +22,23 @@
     <string name="charitable_organization">Spendenorganisation</string>
     <string name="create">Anlegen</string>
     <string name="previewimage">previewImage</string>
-    <string name="bewertung">bewertung</string>
-    <string name="name">name</string>
+    <string name="bewertung">Bewertung</string>
+    <string name="name">Name</string>
     <string name="sortByPrice">Preis</string>
+    <string name="profil">Profil</string>
+    <string name="userName">Steve Bauer</string>
+    <string name="address">76187, Karlsruhe</string>
+    <string name="addressDesc">76187, Karlsruhe</string>
+    <string name="changePasswort">Passwort ändern</string>
+    <string name="foodname">foodName</string>
+    <string name="addressFull">Bahnhofsplatz 1a. 76137. Karlsruhe</string>
+    <string name="country">Deutschland</string>
+    <string name="countryHint">Land</string>
+    <string name="paymentMethod">Paypal</string>
+    <string name="paymentMethodHint">Zahlungsart</string>
+    <string name="paymentDetailsHint">Kontonummer</string>
+    <string name="paymentDetails">paypal@stevenbauer.de</string>
+    <string name="statistic_button">Spendenstatistik einsehen</string>
+    <string name="delete_user">Benutzerkonto löschen</string>
+    <string name="edit"><![CDATA[Bearbeiten >]]></string>
 </resources>

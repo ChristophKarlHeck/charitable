@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/charitable_blue"
     tools:context=".ShowMealActivity">
 
     <ImageView
@@ -15,22 +16,53 @@
         android:src="@drawable/test" />
 
     <TextView
+        android:id="@+id/foodNameInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/previewImage"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/gericht"
+        android:textColor="@color/charitable_beige" />
+
+    <TextView
         android:id="@+id/foodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/previewImage"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="10dp"
         android:text=""
-        android:textColor="@color/black" />
+        android:textColor="@color/charitable_beige" />
 
 
     <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
+        android:id="@+id/descriptionInfo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/foodName"
-        android:textColor="@color/black"
+        android:text="@string/description"
+        android:textColor="@color/charitable_beige"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foodName"
+        android:textColor="@color/charitable_beige"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/bewertungInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description"
+        android:textColor="@color/charitable_beige"
+        android:layout_marginStart="20dp"
+        android:text="@string/bewertung"
         android:layout_marginTop="10dp" />
 
     <EditText
@@ -38,10 +70,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_below="@id/foodName"
+        android:layout_below="@id/bewertungInfo"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:gravity="top"
@@ -49,7 +81,7 @@
         android:inputType="number"
         android:lines="5"
         android:maxLines="5"
-        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingTop="5dp"
         android:textColor="@color/white"
         android:textColorHint="@color/hint_color"
@@ -61,20 +93,52 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/price"
-        android:layout_width="match_parent"
+        android:id="@+id/priceInfo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bewertung"
-        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:text="@string/price"
+        android:textColor="@color/charitable_beige"
         android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bewertung"
+        android:layout_marginStart="200dp"
+        android:textColor="@color/charitable_beige"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/seatsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price"
+        android:text="@string/number_of_seats"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/charitable_beige" />
 
     <TextView
         android:id="@+id/seats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/price"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/charitable_beige" />
+
+    <TextView
+        android:id="@+id/ingredientsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seats"
+        android:layout_marginTop="10dp"
+        android:text="@string/ingredients"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/charitable_beige" />
 
     <TextView
         android:id="@+id/ingredients"
@@ -82,7 +146,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/seats"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black" />
+        android:layout_marginStart="200dp"
+        android:textColor="@color/charitable_beige" />
+
+    <TextView
+        android:id="@+id/charitableOrganizationInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ingredients"
+        android:layout_marginTop="10dp"
+        android:text="@string/charitable_organization"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/charitable_beige" />
 
     <TextView
         android:id="@+id/charitableOrganization"
@@ -90,6 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ingredients"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black" />
+        android:layout_marginStart="200dp"
+        android:textColor="@color/charitable_beige" />
 
 </RelativeLayout>
