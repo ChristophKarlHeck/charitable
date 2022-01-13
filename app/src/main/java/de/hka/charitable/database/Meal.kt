@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.math.BigDecimal
 
+// class for a meal with all relevant information, which is used in the project
 @Entity
 data class Meal(
     @ColumnInfo(name = "name") val name: String?,

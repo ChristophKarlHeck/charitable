@@ -10,7 +10,9 @@ import android.widget.TextView
 import java.util.ArrayList
 import de.hka.charitable.R
 import de.hka.charitable.database.Meal
-
+/*
+    CustomListAdapter it is used to fill the list_item of a ListView with values.
+ */
 class ListAdapter(context: Context, mealArrayList: ArrayList<Meal>) :
     ArrayAdapter<Meal>(context, R.layout.list_item, R.id.empty, mealArrayList) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

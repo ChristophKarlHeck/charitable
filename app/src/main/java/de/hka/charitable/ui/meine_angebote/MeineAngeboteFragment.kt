@@ -53,25 +53,25 @@ class MeineAngeboteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        refreshFunction = { this.refresh() };
-        currentView = view;
-        val list = this.getFoodListItems();
+        refreshFunction = { this.refresh() }
+        currentView = view
+        val list = this.getFoodListItems()
         val listOwnMeals = view.findViewById<ListView>(R.id.listMyMeals)
         val openCreateMealActivityButton =
             view.findViewById<FloatingActionButton>(R.id.addNewMealButton)
         // wait for the Database Request
-        Thread.sleep(100);
+        Thread.sleep(100)
         adapter = ListAdapter(
             view.context,
             list
         )
         listOwnMeals.adapter = adapter
-        listOwnMeals.isClickable = true;
+        listOwnMeals.isClickable = true
         listOwnMeals.setOnItemClickListener { parent, view, position, id ->
             run {
-                var meal = (listOwnMeals.getItemAtPosition(position) as Meal)
+                val meal = (listOwnMeals.getItemAtPosition(position) as Meal)
                 val intent = Intent(view.context, ShowMealActivity::class.java)
-                val id = meal.uid;
+                // Set data for the intent, so it can be used somewhere else
                 intent.putExtra("name", meal.name)
                 intent.putExtra("price", meal.price)
                 intent.putExtra("seats", meal.seats)
@@ -80,7 +80,7 @@ class MeineAngeboteFragment : Fragment() {
                 intent.putExtra("charitable_organization", meal.charitableOrganization)
                 intent.putExtra("imagePath", meal.imagePath)
                 intent.putExtra("rating", meal.rating)
-                intent.putExtra("id", id)
+                intent.putExtra("id", meal.uid)
                 startActivity(intent)
             }
         }
@@ -88,6 +88,7 @@ class MeineAngeboteFragment : Fragment() {
             val intent = Intent(view.context, CreateMealActivity::class.java)
             startActivity(intent)
         }
+        // connect buttons with the corresponding sorting function
         val sortByNameButton =
             view.findViewById<Button>(R.id.sortByName)
         val sortByPriceButton =
@@ -102,9 +103,10 @@ class MeineAngeboteFragment : Fragment() {
 
     }
 
-    public fun refresh() {
+    // refresh the meal listView
+    fun refresh() {
         Thread.sleep(50)
-        var list = getFoodListItems();
+        val list = getFoodListItems()
         val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
         adapter = currentView?.context?.let {
             ListAdapter(
@@ -115,23 +117,25 @@ class MeineAngeboteFragment : Fragment() {
         listOwnMeals?.adapter = adapter
     }
 
+    // return the meals for the listview
     private fun getFoodListItems(): ArrayList<Meal> {
-        var list = ArrayList<Meal>();
+        val list = ArrayList<Meal>()
         GlobalScope.launch {
             val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
             dbHelper.getMeals().forEach {
-                list.add(it);
-            };
+                list.add(it)
+            }
         }
         Thread.sleep(100)
-        return list;
+        return list
     }
 
-    public fun refreshAndSortByName() {
+    // refresh the meal listView
+    fun refreshAndSortByName() {
         Thread.sleep(50)
-        var list = getFoodListItemsAndSortByName();
+        val list = getFoodListItemsAndSortByName()
         val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
-        Thread.sleep(100);
+        Thread.sleep(100)
         adapter = currentView?.context?.let {
             ListAdapter(
                 it,
@@ -141,24 +145,26 @@ class MeineAngeboteFragment : Fragment() {
         listOwnMeals?.adapter = adapter
     }
 
+    // return the meals for the listview sorted by name
     private fun getFoodListItemsAndSortByName(): ArrayList<Meal> {
-        var list = ArrayList<Meal>();
+        var list = ArrayList<Meal>()
         GlobalScope.launch {
             val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
             dbHelper.getMeals().forEach {
-                list.add(it);
-            };
-            list = ArrayList<Meal>(list.sortedWith(compareBy { it.name }));
+                list.add(it)
+            }
+            list = ArrayList<Meal>(list.sortedWith(compareBy { it.name }))
         }
         Thread.sleep(100)
-        return list;
+        return list
     }
 
-    public fun refreshAndSortByPrice() {
+    // refresh the meal listView
+    fun refreshAndSortByPrice() {
         Thread.sleep(50)
-        var list = getFoodListItemsAndSortByPrice();
+        val list = getFoodListItemsAndSortByPrice()
         val listOwnMeals = currentView?.findViewById<ListView>(R.id.listMyMeals)
-        Thread.sleep(100);
+        Thread.sleep(100)
         adapter = currentView?.context?.let {
             ListAdapter(
                 it,
@@ -168,17 +174,18 @@ class MeineAngeboteFragment : Fragment() {
         listOwnMeals?.adapter = adapter
     }
 
+    // return the meals for the listview sorted by price
     private fun getFoodListItemsAndSortByPrice(): ArrayList<Meal> {
-        var list = ArrayList<Meal>();
+        var list = ArrayList<Meal>()
         GlobalScope.launch {
             val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
             dbHelper.getMeals().forEach {
-                list.add(it);
-            };
-            list = ArrayList<Meal>(list.sortedWith(compareBy { it.price }));
+                list.add(it)
+            }
+            list = ArrayList<Meal>(list.sortedWith(compareBy { it.price }))
         }
         Thread.sleep(100)
-        return list;
+        return list
     }
 
     override fun onDestroyView() {
@@ -187,6 +194,6 @@ class MeineAngeboteFragment : Fragment() {
     }
 
     companion object {
-        var refreshFunction = {};
+        var refreshFunction = {}
     }
 }

@@ -19,7 +19,8 @@ class ShowMealActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_meal)
-        var intent = this.intent;
+        val intent = this.intent
+        // fill view with data from the intent
         if (intent != null) {
             findViewById<TextView>(R.id.foodName).text = intent.getStringExtra("name").toString()
             findViewById<TextView>(R.id.price).text = intent.getStringExtra("price")
@@ -31,16 +32,17 @@ class ShowMealActivity : AppCompatActivity() {
             intent.getStringExtra("imagePath")?.let {
                 findViewById<ImageView>(R.id.previewImage).setImageResource(
                     it.toInt())
-            };
+            }
 
         }
     }
 
+    // Insert the rating into the meal, if the rating is not empty
     override fun onDestroy() {
         super.onDestroy()
         if(findViewById<EditText>(R.id.bewertung).text.isNotEmpty())
         {
-            val id = intent.getIntExtra("id",0);
+            val id = intent.getIntExtra("id",0)
             val dbhelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(applicationContext))
             GlobalScope.launch {
                 if (id != 0) {
@@ -51,7 +53,8 @@ class ShowMealActivity : AppCompatActivity() {
                 }
             }
             Thread.sleep(100)
-            MeineAngeboteFragment.refreshFunction.invoke();
+            // refresh the itemList if the rating was added
+            MeineAngeboteFragment.refreshFunction.invoke()
         }
     }
 }

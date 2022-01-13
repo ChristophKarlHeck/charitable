@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
+// database object for running operations on the database
 @Dao
 interface MealDao {
     @Query("SELECT * FROM meal")
